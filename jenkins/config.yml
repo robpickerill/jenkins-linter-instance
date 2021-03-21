@@ -1,10 +1,41 @@
 ---
 
 jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  numExecutors: 2
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  clouds:
+    - docker:
+        name: "docker"
+        dockerApi:
+          dockerHost:
+            uri: "unix:///var/run/docker.sock"
+        templates:
+          - labelString: "docker-agent"
+            dockerTemplateBase:
+              image: "jenkins/agent"
+            remoteFs: "/home/jenkins/agent"
+            connector:
+              attach:
+                user: "jenkins"
+            instanceCapStr: "10"
+            retentionStrategy:
+              idleMinutes: 1
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: "admin"
           password: "admin"
-  authorizationStrategy: loggedInUsersCanDoAnything
+tool:
+  git:
+    installations:
+      - name: git
+        home: /usr/local/bin/git
+unclassified:
+  location:
+    url: http://localhost:8080/

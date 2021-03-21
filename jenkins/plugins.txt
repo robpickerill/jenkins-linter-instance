@@ -1,7 +1,7 @@
 configuration-as-code:1.47
 
 docker-workflow
-docker-slaves
+docker
 
 blueocean
 job-dsl
