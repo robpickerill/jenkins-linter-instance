@@ -1,0 +1,10 @@
+configuration-as-code:1.47
+
+docker-workflow
+docker-slaves
+
+blueocean
+job-dsl
+matrix-auth
+workflow-cps
+workflow-job
